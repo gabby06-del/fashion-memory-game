@@ -1,9 +1,8 @@
 # 🪡Fashion Memory Game
 A card-matching memory game with a fashion theme to match alike clothing pieces.
 Built from scratch using vanilla HTML, CSS, and JavaScript
-Engineered with a focus on UI design, accessibility, and code quality - including 
-a CSS custom property theming system, ARIA live regions for screen reader support, 
-component-organized stylesheets, and fully commented JavaScript logic.
+
+- Engineered with a focus on UI design, accessibility, and code quality - including a CSS custom property theming system, ARIA live regions for screen reader support, component-organized stylesheets, and fully commented JavaScript logic.
 
 
 ## 🕹️Play the game!
