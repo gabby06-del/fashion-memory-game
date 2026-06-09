@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- importing font families -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Memory — Find the Pairs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ 
+  <header>
+    <h1>🪡 Fashion Memory</h1>
+    <p class="subtitle">Find all the matching pairs in the closet</p>
+  </header>
+ 
+  <!-- Score bar — updates throughout gameplay -->
+  <div class="stats-bar" role="status" aria-live="polite">
+    <div class="stat">
+      <span class="stat-label">Moves</span>
+      <span class="stat-value" id="moves">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Pairs</span>
+      <span class="stat-value" id="matchedPairs">0 / 8</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Time</span>
+      <span class="stat-value" id="timer">0s</span>
+    </div>
+  </div>
+ 
+  <!-- win message -->
+   <div class="win-banner" id="win-banner" role="alert" aria-live="polite">
+    <h2>✨ You did it!</h2>
+    <p id="win-message">The fashionistas are proud of you ❤️.</p>
+  </div>
+ 
+  <!-- Cards are generated here by JavaScript -->
+  <div class="grid" id="grid" role="grid" aria-label="Memory card game board"></div>
+ 
+  <button class="btn" onclick="startGame()"> New Game</button>
+ 
+  <div class="ground-strip" aria-hidden="true"></div>
+ 
+  <script src="js/game.js"></script>
+</body>
+</html>
+ 

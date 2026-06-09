@@ -1,0 +1,270 @@
+/* =============== FASHION MEMORY GAME CSS =============== */
+/* =============== FASHION MEMORY organization - styles
+organized in sections for readability 
+1. Variables
+2. Layout
+3. Header
+4. Stats bar
+5. Win prompt
+6. Card style
+7. Button style
+8. Aesthetics
+9. Accessibility/responsive design
+======================================================== */
+
+/* =============== 1. Variables =============== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+      --softpink: #ffd6f6; 
+      --pastelpurple: #d9b3ff;
+    --cottoncandy: #ffb3d9;
+    --babypink:  #fff8fd;
+    --blushpink: #ffe6f7;
+    --purple: #7b4fa3;
+    --lavender: #b57edc; 
+    --neonpink: #ff85c8;
+    --neonpurple: #b266ff; 
+    --pinkhighlight:  #ff9ed2;
+    --purplehighlight: #e6c2ff;
+}
+/* =============== 2. Layout =============== */
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: var(--softpink);
+    background-image: 
+    radial-gradient(ellipse at 20% 0%, #efd1ea 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 0%, #f7e6f6 0%, transparent 40%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 3rem;
+}
+
+/* =============== 3. Header =============== */
+
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-family: "Lora", serif;
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
+    color: var(--purple);
+    margin-bottom: 0.3rem;
+}
+
+.subtitle {
+    font-family: "Open Sans", sans-serif;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: var(--purple);
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* =============== 4. Stats bar =============== */
+
+.stats-bar {
+    display: flex;
+    gap: 2rem;
+    background-color: var(--blushpink);
+    border: 2px solid var(--lavender);
+    border-radius: 12px;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 0 var(--lavender);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--lavender);
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-family: "Lora", serif;
+    color: var(--purple);
+    font-weight: 600;
+}
+
+/* =============== 5. Win prompt =============== */
+
+.win-banner {
+    display: none; /* Hidden by default, shown when game is won */
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--blushpink);
+    border: 2px solid var(--pinkhighlight);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 0 var(--purple);
+    text-align: center;
+}
+
+.win-banner.visible {
+    display: flex;
+}
+.win-banner h2 {
+    font-family: "Open Sans", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--purple);
+}
+.win-banner p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    color: var(--lavender);
+    font-weight: 600;
+}
+
+/* =============== 6. Card style =============== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.card {
+    aspect-ratio: 1;
+    cursor: pointer;
+    perspective: 600px;
+    border-radius: 10px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transform-style: preserve-3d;
+    border-radius: 10px;
+}
+.card.flipped .card-inner,
+.card.matched .card-inner {
+    transform: rotateY(180deg); 
+}
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  border: 2.5px solid;
+  user-select: none;
+}
+
+
+.card-back {
+  background: var(--neonpink);
+  border-color: var(--neonpurple);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.4rem;
+  box-shadow:
+    inset 0 0 0 4px rgba(255, 255, 255, 0.08),
+    0 3px 0 var(--neonpurple);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 6px,
+    rgba(255, 255, 255, 0.04) 6px,
+    rgba(255, 255, 255, 0.04) 12px
+  );
+}
+.card-front {
+  background: var(--babypink);
+  border-color: var(--lavender);
+  transform: rotateY(180deg); /* pre-rotated so it's hidden by default */
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 3px 0 var(--lavender);
+}
+.card-front .card-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lavender);
+}
+/* Matched cards get a green tint */
+.card.matched .card-front {
+  background: #f7e8f7;
+  border-color: var(--pastelpurple);
+  box-shadow: 0 3px 0 var(--pastelpurple);
+}
+.card:not(.flipped):not(.matched):hover .card-inner {
+  transform: translateY(-3px);
+}
+
+/* =============== 7. Button style =============== */
+
+.btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    color: var(--purple);
+    font-weight: 600;
+    background-color: var(--pinkhighlight);
+    border: 2px solid var(--purple);
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--purple);
+    transition: transform 0.1s, box-shadow 0.1s;
+    letter-spacing: 0.03em;
+}
+.btn:hover {
+    background-color: var(--purplehighlight);
+}
+.btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--purple);
+}
+
+/* =============== 8. Aesthetics =============== */
+.ground-strip {
+  width: 100%;
+  max-width: 450px;
+  height: 8px;
+  background: var(--pastelpurple);
+  border-radius: 4px;
+  margin-top: 2rem;
+  opacity: 0.5;
+}
+
+/* =============== 9. Accessibility/responsive design =============== */
+.card:focus-visible {
+  outline: 3px solid var(--pinkhighlight);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-inner {
+    transition: none;
+  }
+
+  .card:hover .card-inner {
+    transform: none;
+  }
+}
